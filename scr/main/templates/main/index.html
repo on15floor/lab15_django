@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block body %}
+<div class="container h-100 w-50">
+    <div class="row h-100 justify-content-center align-items-center">
+        <form class="col-12 text-center">
+            <div class="form-group">
+                <h3 class="cover-heading">Здравствуйте, меня зовут Александр</h3>
+                <p class="lead">Этот сайт - склад моих проектов. А еще тут есть блог, где я буду делиться своими
+                    открытиями и достижениями.</p>
+                <h5 class="cover-heading">Найти меня можно тут:</h5>
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <table class="table table-responsive">
+                            <tr>
+                                <td>
+                                    <a href="mailto:on15floor@gmail.com">
+                                    <img src="{% static '/img/social_mail.png' %}" class="img-fluid"></a></td>
+                                <td><a href="http://github.com/on15floor/" target="_blank">
+                                    <img src="{% static '/img/social_github.png' %}" class="img-fluid"></a></td>
+                                <td><a href="https://t.me/on15floor" target="_blank">
+                                    <img src="{% static '/img/social_telegram.png' %}" class="img-fluid"></a></td>
+                                <td><a href="https://www.instagram.com/on15floor/" target="_blank">
+                                    <img src="{% static '/img/social_instagram.png' %}" class="img-fluid"></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
