@@ -28,6 +28,27 @@ class HintsView(View):
             raise Http404()
 
 
+class UnityView(View):
+    """Страница Unity"""
+    def get(self, request, game, *args, **kwargs):
+        games = ['simple_cube', 'delimiter', 'kot_guide']
+        if game in games:
+            return render(request, f'main/unity/{game}.html')
+        else:
+            raise Http404()
+
+
+class UnityPPView(View):
+    """Страница Unity Privacy Policy"""
+    def get(self, request, game, *args, **kwargs):
+        games = ['simple_cube', 'delimiter', 'kot_guide']
+        if game in games:
+            game_name = game.replace('_', ' ').title()
+            return render(request, f'main/unity/privacy_policy.html', context={'game': game_name})
+        else:
+            raise Http404()
+
+
 class Handler404(View):
     """404 Ошибка. TODO: Реализация логирования в MongoDB"""
     def get(self, request, *args, **kwargs):
