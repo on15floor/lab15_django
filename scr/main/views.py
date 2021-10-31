@@ -1,8 +1,11 @@
+from django.contrib.auth import login, authenticate
 from django.http import HttpResponse, Http404
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
-from .models import NoSmokingStages
 
+from .forms import SignInForm
+from .models import NoSmokingStages
 from .services.hints_view import get_markdown
 from .services.no_smoking_view import build_collection
 from .services.ping_view import get_client_ip
@@ -19,6 +22,23 @@ class PingView(View):
     def get(self, request, *args, **kwargs):
         return HttpResponse(f'Requester IP: {get_client_ip(request)}<br>'
                             f'User-agent: {request.headers["User-Agent"]}')
+
+
+class SignInView(View):
+    def get(self, request, *args, **kwargs):
+        form = SignInForm()
+        return render(request, 'main/signin.html', context={'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = SignInForm(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/')
+        return render(request, 'main/signin.html', context={'form': form})
 
 
 class NoSmokingView(View):

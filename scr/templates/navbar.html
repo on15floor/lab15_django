@@ -1,0 +1,64 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <img src="{% static '/img/icon.png' %}" alt="" width="25" height="25">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active"><a class="nav-link" href="/">Главная<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUnity" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Unity</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownUnity">
+                    <a class="dropdown-item" href="/unity/simple_cube">Simple Cube</a>
+                    <a class="dropdown-item" href="/unity/delimiter">Delimiter</a>
+                    <a class="dropdown-item" href="/unity/kot_guide">KoT Guide</a>
+                </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/hints/git">Hints</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUtils" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Utils</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownUnity">
+                    <a class="dropdown-item" href="/no_smoking">No smoking</a>
+                </div>
+            </li>
+            {% if user.is_staff %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMoney" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Money</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMoney">
+                    <a class="dropdown-item" href="/stocks">Акции</a>
+                    <a class="dropdown-item" href="/crypto">Крипто</a>
+                </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/birthdays/today">ДР</a></li>
+            {% endif %}
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+            <div class="text-end">
+                {% if user.is_staff %}
+                    {% if request.path == '/blog' %}
+                    <input type="search" class="form-control form-control-dark" placeholder="Поиск..." name="q">
+                    <a href="/blog/create_post" class="btn btn-outline-warning my-2 my-sm-0">Создать</a>
+                    {% endif %}
+                    {% if request.path == '/birthdays/all' or request.path == '/birthdays/today' or request.path == '/birthdays/m' or request.path == '/birthdays/w' %}
+                    <input type="search" class="form-control form-control-dark" placeholder="Поиск..." name="q">
+                    <a href="/birthdays/add" class="btn btn-outline-warning my-2 my-sm-0">Добавить</a>
+                    {% endif %}
+                <a href="/admin" class="btn btn-outline-info my-2 my-sm-0">Admin</a>
+                <a href="{% url 'sign_out' %}" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
+                {% else %}
+                <a href="{% url 'sign_in' %}" class="btn btn-outline-success my-2 my-sm-0">Login</a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</nav>
