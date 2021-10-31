@@ -4,12 +4,12 @@
 {% block body %}
 <div class="container pt-5 my-3 p-3 bg-white rounded shadow-sm">
     <h4 class="border-bottom border-gray pb-2 mb-0">Шпаргалки:
-        <a href="/hints/git" class="btn btn-primary btn-sm">GIT</a>
-        <a href="/hints/markdown" class="btn btn-secondary btn-sm">MarkDown</a>
-        <a href="/hints/python" class="btn btn-success btn-sm">Python</a>
-        <a href="/hints/sql" class="btn btn-danger btn-sm">SQL</a>
-        <a href="/hints/bash" class="btn btn-warning btn-sm">BASH</a>
-        <a href="/hints/vim" class="btn btn-info btn-sm">VIM</a>
+        <a href="{% url 'hints' 'git' %}" class="btn btn-primary btn-sm">GIT</a>
+        <a href="{% url 'hints' 'markdown' %}" class="btn btn-secondary btn-sm">MarkDown</a>
+        <a href="{% url 'hints' 'python' %}" class="btn btn-success btn-sm">Python</a>
+        <a href="{% url 'hints' 'sql' %}" class="btn btn-danger btn-sm">SQL</a>
+        <a href="{% url 'hints' 'bash' %}" class="btn btn-warning btn-sm">BASH</a>
+        <a href="{% url 'hints' 'vim' %}" class="btn btn-info btn-sm">VIM</a>
     </h4>
     {{ md_to_html_content | safe}}
 </div>
