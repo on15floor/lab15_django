@@ -1,8 +1,11 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.views import View
-from .services.ping_view import get_client_ip
+from .models import NoSmokingStages
+
 from .services.hints_view import get_markdown
+from .services.no_smoking_view import build_collection
+from .services.ping_view import get_client_ip
 
 
 class MainView(View):
@@ -16,6 +19,27 @@ class PingView(View):
     def get(self, request, *args, **kwargs):
         return HttpResponse(f'Requester IP: {get_client_ip(request)}<br>'
                             f'User-agent: {request.headers["User-Agent"]}')
+
+
+class NoSmokingView(View):
+    """Страница No Smoking"""
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.no_smoking_db = NoSmokingStages.objects.order_by('id')
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'main/no_smoking.html',
+                      context={'data_out': build_collection('2008-02-01', '2021-08-30', 50, 150),
+                               'no_smoking_db': self.no_smoking_db})
+
+    def post(self, request, *args, **kwargs):
+        time_start = request.POST.get('in_start_day', '')
+        time_stop = request.POST.get('in_stop_day', '')
+        price_start = int(request.POST.get('in_price_start', ''))
+        price_stop = int(request.POST.get('in_price_stop', ''))
+        return render(request, 'main/no_smoking.html',
+                      context={'data_out': build_collection(time_start, time_stop, price_start, price_stop),
+                               'no_smoking_db': self.no_smoking_db})
 
 
 class HintsView(View):
