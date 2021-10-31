@@ -17,17 +17,17 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUnity" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">Unity</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownUnity">
-                    <a class="dropdown-item" href="/unity/simple_cube">Simple Cube</a>
-                    <a class="dropdown-item" href="/unity/delimiter">Delimiter</a>
-                    <a class="dropdown-item" href="/unity/kot_guide">KoT Guide</a>
+                    <a class="dropdown-item" href="{% url 'unity' 'simple_cube' %}">Simple Cube</a>
+                    <a class="dropdown-item" href="{% url 'unity' 'delimiter' %}">Delimiter</a>
+                    <a class="dropdown-item" href="{% url 'unity' 'kot_guide' %}">KoT Guide</a>
                 </div>
             </li>
-            <li class="nav-item"><a class="nav-link" href="/hints/git">Hints</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'hints' 'git' %}">Hints</a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUtils" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">Utils</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownUnity">
-                    <a class="dropdown-item" href="/no_smoking">No smoking</a>
+                    <a class="dropdown-item" href="{% url 'no_smoking'%}">No smoking</a>
                 </div>
             </li>
             {% if user.is_staff %}
@@ -53,7 +53,7 @@
                     <input type="search" class="form-control form-control-dark" placeholder="Поиск..." name="q">
                     <a href="/birthdays/add" class="btn btn-outline-warning my-2 my-sm-0">Добавить</a>
                     {% endif %}
-                <a href="/admin" class="btn btn-outline-info my-2 my-sm-0">Admin</a>
+                <a href="{% url 'admin:index' %}" class="btn btn-outline-info my-2 my-sm-0">Admin</a>
                 <a href="{% url 'sign_out' %}" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
                 {% else %}
                 <a href="{% url 'sign_in' %}" class="btn btn-outline-success my-2 my-sm-0">Login</a>

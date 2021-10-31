@@ -12,7 +12,7 @@ urlpatterns = [
     path('signout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='sign_out'),
     # Статические страницы
     path('no_smoking/', NoSmokingView.as_view(), name='no_smoking'),
-    path('hints/<doc>/', HintsView.as_view(), name='get_docs'),
+    path('hints/<doc>/', HintsView.as_view(), name='hints'),
     path('unity/<game>/', UnityView.as_view(), name='unity'),
     path('unity/privacy_policy/<game>/', UnityPPView.as_view(), name='unity_pp'),
     # Обработка ошибок
