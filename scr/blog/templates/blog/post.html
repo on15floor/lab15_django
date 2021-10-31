@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Блог > {{ post.title }}{% endblock %}
+
+{% block body %}
+<div class="container pt-5 my-3 p-3 bg-white rounded shadow-sm">
+    <div class="media text-muted pt-3">
+        <figure>
+            <img src="{{ post.icon }}" width="64" height="64">
+            <div class="small text-muted" align="center">
+                {{ post.date|date:'d-m-y' }}
+            </div>
+        </figure>
+        <p class="media-body pb-3 pl-3 mb-0 Medium lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">{{ post.title }}</strong>
+            {{ post.intro }}
+        </p>
+    </div>
+    <div class="alert alert-primary" role="alert">
+        <div class="alert alert-light my-3">
+            <p>{{ post.text|safe }}</p>
+            <a href="{% url 'blog' %}" class="btn btn-info">Назад</a>
+            {% if user.is_staff %}
+                <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Del</a>
+                <a href="{% url 'post_update' post.id %}" class="btn btn-success">Edit</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
