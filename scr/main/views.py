@@ -13,21 +13,26 @@ from .services.ping_view import get_client_ip
 
 class MainView(View):
     """Главная страница сайта"""
+    template = 'main/index.html'
+
     def get(self, request, *args, **kwargs):
-        return render(request, 'main/index.html')
+        return render(request, self.template)
 
 
 class PingView(View):
     """Ping (возвращает IP)"""
-    def get(self, request, *args, **kwargs):
+    @staticmethod
+    def get(request, *args, **kwargs):
         return HttpResponse(f'Requester IP: {get_client_ip(request)}<br>'
                             f'User-agent: {request.headers["User-Agent"]}')
 
 
 class SignInView(View):
+    template = 'main/signin.html'
+
     def get(self, request, *args, **kwargs):
         form = SignInForm()
-        return render(request, 'main/signin.html', context={'form': form})
+        return render(request, self.template, context={'form': form})
 
     def post(self, request, *args, **kwargs):
         form = SignInForm(request.POST)
@@ -38,43 +43,48 @@ class SignInView(View):
             if user is not None:
                 login(request, user)
                 return HttpResponseRedirect('/')
-        return render(request, 'main/signin.html', context={'form': form})
+        return render(request, self.template, context={'form': form})
 
 
 class NoSmokingView(View):
     """Страница No Smoking"""
+    template = 'main/no_smoking.html'
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.no_smoking_db = NoSmokingStages.objects.order_by('id')
 
     def get(self, request, *args, **kwargs):
-        return render(request, 'main/no_smoking.html',
-                      context={'data_out': build_collection('2008-02-01', '2021-08-30', 50, 150),
-                               'no_smoking_db': self.no_smoking_db})
+        return render(request, self.template, context={
+            'data_out': build_collection('2008-02-01', '2021-08-30', 50, 150),
+            'no_smoking_db': self.no_smoking_db})
 
     def post(self, request, *args, **kwargs):
         time_start = request.POST.get('in_start_day', '')
         time_stop = request.POST.get('in_stop_day', '')
         price_start = int(request.POST.get('in_price_start', ''))
         price_stop = int(request.POST.get('in_price_stop', ''))
-        return render(request, 'main/no_smoking.html',
-                      context={'data_out': build_collection(time_start, time_stop, price_start, price_stop),
-                               'no_smoking_db': self.no_smoking_db})
+        return render(request, self.template, context={
+            'data_out': build_collection(time_start, time_stop, price_start, price_stop),
+            'no_smoking_db': self.no_smoking_db})
 
 
 class HintsView(View):
     """Страница Hints"""
+    template = 'main/docs.html'
+
     def get(self, request, doc, *args, **kwargs):
         docs = ['git', 'markdown', 'python', 'sql', 'bash', 't', 'vim']
         if doc in docs:
-            return render(request, 'main/docs.html', context={'md_to_html_content': get_markdown(doc)})
+            return render(request, self.template, context={'md_to_html_content': get_markdown(doc)})
         else:
             raise Http404()
 
 
 class UnityView(View):
     """Страница Unity"""
-    def get(self, request, game, *args, **kwargs):
+    @staticmethod
+    def get(request, game, *args, **kwargs):
         games = ['simple_cube', 'delimiter', 'kot_guide']
         if game in games:
             return render(request, f'main/unity/{game}.html')
@@ -84,11 +94,13 @@ class UnityView(View):
 
 class UnityPPView(View):
     """Страница Unity Privacy Policy"""
+    template = 'main/unity/privacy_policy.html'
+
     def get(self, request, game, *args, **kwargs):
         games = ['simple_cube', 'delimiter', 'kot_guide']
         if game in games:
             game_name = game.replace('_', ' ').title()
-            return render(request, f'main/unity/privacy_policy.html', context={'game': game_name})
+            return render(request, self.template, context={'game': game_name})
         else:
             raise Http404()
 
