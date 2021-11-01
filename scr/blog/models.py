@@ -4,6 +4,8 @@ from django.utils.timezone import now
 
 class Post(models.Model):
     """ Модель поста """
+    objects = models.Manager()
+
     icon = models.TextField('Icon base64')
     title = models.CharField('Заголовок', max_length=100)
     intro = models.CharField('Интро', max_length=300)
