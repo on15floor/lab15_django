@@ -25,7 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'main',
-    'blog'
+    'blog',
+    'money'
 ]
 
 MIDDLEWARE = [
@@ -105,4 +106,12 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Мои константы
 LOGOUT_REDIRECT_URL = "/"
+TINKOFF_TAX_PLUS = os.getenv('TINKOFF_TAX_PLUS')
+
+# Токены для работы приложений
+TINKOFF_SECRET_KEY = os.getenv('TINKOFF_SECRET_KEY')
+BINANCE_API_KEY = os.getenv('BINANCE_API_KEY')
+BINANCE_API_SECRET = os.getenv('BINANCE_API_SECRET')
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
