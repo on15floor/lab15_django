@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'main',
     'blog',
     'money',
-    'birthdays'
+    'birthdays',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -116,3 +117,4 @@ TINKOFF_SECRET_KEY = os.getenv('TINKOFF_SECRET_KEY')
 BINANCE_API_KEY = os.getenv('BINANCE_API_KEY')
 BINANCE_API_SECRET = os.getenv('BINANCE_API_SECRET')
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+API_QUERY_TOKEN = os.getenv('API_QUERY_TOKEN')
