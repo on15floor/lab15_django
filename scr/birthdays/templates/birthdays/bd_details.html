@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Дни рождения > Запись
+{% endblock %}
+
+{% block body %}
+<div class="container pt-5 my-3 p-3 bg-white rounded shadow-sm">
+    <h4>Детали дня рождения
+    <a href="{% url 'birthday_delete' form.instance.id %}" class="btn btn-danger">Удалить</a></h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.name }}<br>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend"><div class="input-group-text">{{ form.male }}<br></div></div>
+            <label class="form-control">Пол мужской</label>
+        </div>
+        {{ form.birthdate }}<br>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend"><div class="input-group-text">{{ form.birthdate_checked }}<br></div></div>
+            <label class="form-control">День рождения проверен</label>
+        </div>
+        {{ form.comment }}<br>
+        <input type="submit" class="btn btn-success" value="Отправить"><br>
+    </form>
+</div>
+{% endblock %}
