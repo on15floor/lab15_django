@@ -31,5 +31,5 @@ def get_beget_news() -> str:
             # Если кол-во новостей в БД больше кол-ва новостей на сайте, удалим первую запись из БД
             if Beget.objects.count() > len(beget_news):
                 Beget.objects.last().delete()
-            telegram_mess = f'{n}\n'
+            telegram_mess += f'{n}\n'
     return telegram_mess
