@@ -106,12 +106,12 @@ class UnityPPView(View):
 
 
 class Handler404(View):
-    """404 Ошибка. TODO: Реализация логирования в MongoDB"""
+    """404 Ошибка"""
     def get(self, request, *args, **kwargs):
         return render(request, '404.html', status=404)
 
 
 class Handler500(View):
-    """500 Ошибка. TODO: Реализация логирования в MongoDB"""
+    """500 Ошибка"""
     def get(self, request, *args, **kwargs):
         return render(request, '500.html', status=500)
