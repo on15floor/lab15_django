@@ -10,3 +10,4 @@ __pycache__/
 *.log
 *.pot
 *.pyc
+passenger_wsgi.py
