@@ -26,5 +26,5 @@ class BaseMixin:
             'uri': self.uri
         }
         self.res = {**log, **res}
-        print(self.res)
+        print(self.res)  # TODO: Логирование в mongoDB
         return self.res

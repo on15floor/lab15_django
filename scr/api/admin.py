@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Beget
+
+
+@admin.register(Beget)
+class PostAdmin(admin.ModelAdmin):
+    model = Beget
+    list_display = ('id', 'news', 'date')
+    search_fields = ('news', )
