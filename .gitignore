@@ -11,3 +11,4 @@ __pycache__/
 *.pot
 *.pyc
 passenger_wsgi.py
+beget_upload.sh
