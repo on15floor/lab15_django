@@ -11,7 +11,8 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('', include('money.urls')),
     path('', include('birthdays.urls')),
-    path('', include('api.urls'))
+    path('', include('api.urls')),
+    path('', include('dashboard.urls'))
 ]
 
 if not settings.DEBUG:

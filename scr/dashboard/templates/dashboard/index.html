@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block head %}
+    <style>
+        .git-time {
+            color: #96be78;
+        }
+        .git-version {
+            color: #a969cd;
+        }
+        .git-comment {
+            color: #abb2be;
+        }
+        .git-author {
+            color: #64aff0;
+        }
+        .dashboard-bg {
+            background-color: #282c34;
+        }
+        .dashboard-title {
+            color: #dbb777
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container pt-5 my-3 p-3 dashboard-bg rounded shadow-sm">
+        <h4 class="border-bottom border-gray pb-2 mb-0 dashboard-title">GIT Log</h4>
+        <div class="small text-monospace git-comment">
+            {{ git_log | safe }}
+        </div>
+    </div>
+{% endblock %}

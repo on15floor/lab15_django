@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'blog',
     'money',
     'birthdays',
-    'api'
+    'api',
+    'dashboard'
 ]
 
 MIDDLEWARE = [
