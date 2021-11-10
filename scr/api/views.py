@@ -15,7 +15,8 @@ class GetBirthdays(BaseMixin, View):
         telegram_mess = get_birthdays_today()
         if telegram_mess:
             TBot().send_message(message=f'🎂Сегодня свои дни рождения празднуют:\n {telegram_mess}')
-        res = self.save_log_to_mongodb({'lucky_ones_today': telegram_mess.count('\n')})
+        telegram_mess_count = telegram_mess.count('\n')
+        res = self.save_log_to_mongodb(message=f'Lucky ones today: {telegram_mess_count}')
         return JsonResponse(res)
 
 
@@ -26,7 +27,8 @@ class GetBegetNews(BaseMixin, View):
         telegram_mess = get_beget_news()
         if telegram_mess:
             TBot().send_message(message=f'ℹ️Beget news:\n {telegram_mess}')
-        res = self.save_log_to_mongodb({'beget_fresh_news': telegram_mess.count('\n')})
+        telegram_mess_count = telegram_mess.count('\n')
+        res = self.save_log_to_mongodb(message=f'Beget fresh news: {telegram_mess_count}')
         return JsonResponse(res)
 
 
@@ -41,5 +43,5 @@ class GetApptimeSales(BaseMixin, View):
                                     message=game['massage'],
                                     photo_link=game['cover'],
                                     parse_mode='HTML')
-        res = self.save_log_to_mongodb({'apptime_fresh_sales': len(games)})
+        res = self.save_log_to_mongodb(message=f'Apptime fresh sales: {len(games)}')
         return JsonResponse(res)

@@ -10,7 +10,6 @@ from django.core.exceptions import PermissionDenied
 class BaseMixin:
     def __init__(self):
         self.token = ''
-        self.res = {}
         self.uri = ''
         self.status = 'success'
 
@@ -21,19 +20,19 @@ class BaseMixin:
             if self.token == settings.API_QUERY_TOKEN:
                 return
         self.status = 'error'
-        self.save_log_to_mongodb({'permission_denied': 'wrong token'})
+        self.save_log_to_mongodb(message='Wrong token')
         raise PermissionDenied
 
-    def save_log_to_mongodb(self, res):
+    def save_log_to_mongodb(self, message):
         log = {
             'date': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'status': self.status,
             'token': self.token,
-            'uri': self.uri
+            'uri': self.uri,
+            'message': message
         }
-        self.res = {**log, **res}
         mongodb = pymongo.MongoClient(settings.MONGO_CONN_STRING)
         database = mongodb.lab15_ru
         collection = database.api_requests
-        collection.insert_one(json.loads(json_util.dumps(self.res)))
-        return self.res
+        collection.insert_one(json.loads(json_util.dumps(log)))
+        return log
