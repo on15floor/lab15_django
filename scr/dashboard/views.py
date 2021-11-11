@@ -1,28 +1,28 @@
+from django.http import Http404
 from django.shortcuts import render
 from django.views import View
-import subprocess
-from django.conf import settings
+
+from .services.get_gitlog import get_gitlog
+from .services.mongo import MongoDB
 
 
 class GitLogView(View):
     """Страница GitLog"""
-    template = 'dashboard/index.html'
+    @staticmethod
+    def get(request, *args, **kwargs):
+        return render(request, 'dashboard/gitlog.html', context={'git_log': get_gitlog()})
 
-    def get(self, request, *args, **kwargs):
-        format = '--format=format:<span class="git-version">%h</span>-' \
-                 '<span class="git-time">(%ar)</span> %s - <span class="git-author"><b>%an</b></span>' \
-                 '<span class="badge bg-warning text-dark">%d</span>'
-        command = [
-            'git',
-            'log',
-            '--graph',
-            '--all',  # Все ветки
-            format,
-            '--abbrev-commit',  # Сокращенный номер коммита
-            '--date=relative',
-            '--since=6 month ago',  # Коммиты за последние 6 месяцев
-        ]
-        result = subprocess.run(command, cwd=settings.BASE_DIR, stdout=subprocess.PIPE)
-        git_log = result.stdout.decode("utf-8")
-        git_log = git_log.replace('\n', '<br />')
-        return render(request, self.template, context={'git_log': git_log})
+
+class MongoLogView(View):
+    """Страница MongoDBLog"""
+    template = 'dashboard/mongologs.html'
+    mongo = MongoDB()
+
+    def get(self, request, state, *args, **kwargs):
+        if state == 'all':
+            logs = self.mongo.get_logs_all()
+        elif state == 'errors':
+            logs = self.mongo.get_logs_errors()
+        else:
+            raise Http404()
+        return render(request, self.template, context={'logs': list(logs)})

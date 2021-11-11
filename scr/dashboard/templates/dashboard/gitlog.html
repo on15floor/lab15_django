@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard > GitLog{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="container pt-5 my-3 p-3 one-dark-dashboard-bg rounded shadow-sm">
+
+        {% include './navbar.html' %}
+
+        <div class="small text-monospace one-dark-text-white">
+            {{ git_log | safe }}
+        </div>
+    </div>
+{% endblock %}
