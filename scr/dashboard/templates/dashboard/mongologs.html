@@ -3,6 +3,11 @@
 {% block title %}Dashboard > MongoDBLog{% endblock %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+    </script>
 {% endblock %}
 
 {% block body %}
@@ -12,6 +17,7 @@
 
         <div>
         {% for log in logs %}
+            <a href="#" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{{ log }}">🔸️️</a>
             <span class="one-dark-text-purple">[{{ log.date }}]</span>
             {% if log.status == 'error' %}
                 <span class="one-dark-text-red">[_{{ log.status }}_]</span>
