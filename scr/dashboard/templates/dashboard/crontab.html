@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard > Crontab{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="container pt-5 my-3 p-3 one-dark-dashboard-bg rounded shadow-sm">
+
+        {% include './navbar.html' %}
+
+        <div class="small text-monospace one-dark-text-white">
+            {% for task in crontab_tasks %}
+                <span class="one-dark-text-purple">
+                    <a href="{% url 'dashboard_crontab_del' task_id=task.row_number %}"
+                       class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;">del</a>
+                    {% if task.is_hidden == 0 %}
+                        <a href="{% url 'dashboard_crontab_stop' task_id=task.row_number %}">⏹</a>
+                    {% else %}
+                        <a href="{% url 'dashboard_crontab_start' task_id=task.row_number %}">▶️</a>
+                    {% endif %}
+                    [{{ task.row_number }}]
+                </span>
+                <span class="one-dark-text-blue">[{{ task.minutes }} {{ task.hours }} {{ task.days }} {{ task.months }} {{ task.weekdays }}] - </span>
+                <span>{{ task.command|truncatechars:80 }}</span> <br/>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

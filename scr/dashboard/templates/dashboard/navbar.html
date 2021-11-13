@@ -2,12 +2,12 @@
     <a href="{% url 'dashboard_gitlog' %}" class="btn btn-dark btn-sm one-dark-dashboard-title">GitLg</a>
     <div class="btn-group">
       <button type="button" class="btn btn-dark btn-sm dropdown-toggle one-dark-dashboard-title"
-              data-toggle="dropdown" aria-expanded="false">
-        MongoDB
+              data-toggle="dropdown" aria-expanded="false">MongoDB
       </button>
       <div class="dropdown-menu">
         <a class="dropdown-item small" href="{% url 'dashboard_mongolog' 'all' %}">All</a>
         <a class="dropdown-item small" href="{% url 'dashboard_mongolog' 'errors' %}">Errors</a>
       </div>
     </div>
+    <a href="{% url 'dashboard_crontab' %}" class="btn btn-dark btn-sm one-dark-dashboard-title">CronTab</a>
 </div>
