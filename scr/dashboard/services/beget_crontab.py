@@ -1,12 +1,13 @@
 import json
 
 import requests
+from django.conf import settings
 
 
 class Crontab:
     def __init__(self):
-        self.login = 'fh7915ko'
-        self.password = '03fe90aq'
+        self.login = settings.BEGET_LOGIN
+        self.password = settings.BEGET_PASSWORD
 
     def url_gen(self, command) -> str:
         """ Генерирует GET ссылку
