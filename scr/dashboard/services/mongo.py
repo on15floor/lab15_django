@@ -7,7 +7,7 @@ class MongoDB:
         mongodb = pymongo.MongoClient(settings.MONGO_CONN_STRING)
         database = mongodb.lab15_ru
         self.collection = database.api_requests
-        self.logs_limit = 10
+        self.logs_limit = 50
 
     def get_logs_all(self):
         return self.collection.find().sort("_id", -1).limit(self.logs_limit)

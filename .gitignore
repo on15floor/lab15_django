@@ -3,7 +3,7 @@ __pycache__/
 /venv
 /.idea
 /tmp
-
+/deploy
 # Files
 *.env
 *.sqlite3
@@ -11,4 +11,4 @@ __pycache__/
 *.pot
 *.pyc
 passenger_wsgi.py
-beget_upload.sh
+deploy/beget_upload.sh
