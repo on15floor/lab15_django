@@ -26,10 +26,11 @@ INSTALLED_APPS = [
 
     'main',
     'blog',
+    'chords',
     'money',
     'birthdays',
     'api',
-    'dashboard'
+    'dashboard',
 ]
 
 MIDDLEWARE = [
