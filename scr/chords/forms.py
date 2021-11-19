@@ -23,6 +23,6 @@ class SongForm(ModelForm):
                 'id': 'text',
                 'class': 'form-control',
                 'placeholder': 'Введите текст песни',
-                'rows': 20,
+                'rows': 10,
             })
         }

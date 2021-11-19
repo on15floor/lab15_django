@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Аккорды > Детали песни{% endblock %}
+
+{% block head %}
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script src="{% static '/blog/js/summernote_text.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container pt-5 my-3 p-3 bg-white rounded shadow-sm">
+    <h1>Детали песни</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.instrument }}<br>
+        {{ form.song_name }}<br>
+        {{ form.song_text }}<br>
+        <input type="submit" class="btn btn-success" value="Отправить"><br>
+    </form>
+</div>
+{% endblock %}

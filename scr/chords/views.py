@@ -8,7 +8,7 @@ from .models import Song
 
 class ChordsInstrumentView(View):
     """Главная песенника для инструмента"""
-    template = 'chords/songs.html'
+    template = 'chords/chords.html'
 
     def get(self, request, instrument, *args, **kwargs):
         # Поиск
@@ -44,8 +44,8 @@ class SongDetailsView(View):
         else:
             form = SongForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('chords', form.instrument)
+            song = form.save()
+            return redirect('chords', song.instrument)
         return render(request, self.template, context={'form': form})
 
 
