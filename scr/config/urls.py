@@ -12,7 +12,8 @@ urlpatterns = [
     path('', include('money.urls')),
     path('', include('birthdays.urls')),
     path('', include('api.urls')),
-    path('', include('dashboard.urls'))
+    path('', include('dashboard.urls')),
+    path('', include('chords.urls'))
 ]
 
 if not settings.DEBUG:
