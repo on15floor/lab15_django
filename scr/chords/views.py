@@ -6,13 +6,6 @@ from .forms import SongForm
 from .models import Song
 
 
-class ChordsView(View):
-    """Главная песенника"""
-    @staticmethod
-    def get(request, *args, **kwargs):
-        return render(request, 'chords/index.html')
-
-
 class ChordsInstrumentView(View):
     """Главная песенника для инструмента"""
     template = 'chords/songs.html'
@@ -25,9 +18,8 @@ class ChordsInstrumentView(View):
         # Вывод всех песен
         else:
             songs = Song.objects.filter(instrument=instrument)
-        instrument = 'Гитара' if instrument == 'guitar'else 'Укулеле'
-        return render(request, self.template, context={'songs': songs,
-                                                       'instrument': instrument})
+        instrument = 'Гитара' if instrument == 'guitar' else 'Укулеле'
+        return render(request, self.template, context={'songs': songs, 'instrument': instrument})
 
 
 class SongView(View):
@@ -53,7 +45,7 @@ class SongDetailsView(View):
             form = SongForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('chords', 'ukulele')
+            return redirect('chords', form.instrument)
         return render(request, self.template, context={'form': form})
 
 
@@ -62,5 +54,6 @@ class SongDelete(View):
     @staticmethod
     def get(request, song_id, *args, **kwargs):
         song = Song.objects.get(pk=song_id)
+        instrument = song.instrument
         song.delete()
-        return redirect('chords', 'ukulele')
+        return redirect('chords', instrument)
