@@ -19,10 +19,11 @@ class SongForm(ModelForm):
                 'placeholder': 'Введите название песни',
                 'rows': 1,
             }),
-            'text': Textarea(attrs={
-                'id': 'text',
-                'class': 'form-control',
+            'song_text': Textarea(attrs={
+                'id': 'song_text',
+                'class': 'form-control, text-monospace',
                 'placeholder': 'Введите текст песни',
                 'rows': 10,
-            })
+                'cols': 80,
+           })
         }
