@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import ModelForm, TextInput, Textarea, RadioSelect, Select
 from .models import Song
 
 
@@ -7,12 +7,15 @@ class SongForm(ModelForm):
         model = Song
         fields = ['instrument', 'song_name', 'song_text']
         widgets = {
-            'instrument': TextInput(attrs={
-                'id': 'instrument',
-                'class': 'form-control',
-                'placeholder': 'Введите название инструмента',
-                'rows': 1,
-            }),
+            'instrument': Select(
+                choices=[
+                    ('guitar', 'Гитара'),
+                    ('ukulele', 'Укулеле')],
+                attrs={
+                    'id': 'instrument',
+                    'class': 'form-control',
+                }
+            ),
             'song_name': TextInput(attrs={
                 'id': 'song_name',
                 'class': 'form-control',
@@ -25,5 +28,5 @@ class SongForm(ModelForm):
                 'placeholder': 'Введите текст песни',
                 'rows': 10,
                 'cols': 80,
-           })
+            })
         }

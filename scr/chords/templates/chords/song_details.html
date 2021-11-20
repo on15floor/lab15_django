@@ -15,7 +15,9 @@
     <h1>Детали песни</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.instrument }}<br>
+        <div class="input-group mb-3">
+            {{ form.instrument }}<br>
+        </div>
         {{ form.song_name }}<br>
         {{ form.song_text }}<br>
         <input type="submit" class="btn btn-success" value="Отправить"><br>
