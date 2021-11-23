@@ -43,8 +43,8 @@ def get_apptime_sales() -> list:
                 app_link=game['app_link']
             )
             # Если кол-во новостей в БД больше кол-ва новостей на сайте, удалим первую запись из БД
-            if Apptime.objects.count() > len(apptime_sales):
-                Apptime.objects.last().delete()
+            # if Apptime.objects.count() > len(apptime_sales):
+            #     Apptime.objects.last().delete()
             games.append({
                 'massage': f'{game["game_name"]}\n'
                            f'{game["sale_percent"]} ({game["price_old"]} ₽ → <b>{game["price_new"]} ₽</b>)\n'
