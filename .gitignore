@@ -4,6 +4,7 @@ __pycache__/
 /.idea
 /tmp
 /deploy
+/backup
 # Files
 *.env
 *.sqlite3
