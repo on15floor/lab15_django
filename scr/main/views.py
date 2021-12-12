@@ -69,6 +69,12 @@ class NoSmokingView(View):
             'no_smoking_db': self.no_smoking_db})
 
 
+class ConvertorView(View):
+    """Страница конвертора валют"""
+    def get(self, request, *args, **kwargs):
+        return render(request, 'main/converter.html')
+
+
 class HintsView(View):
     """Страница Hints"""
     template = 'main/docs.html'
