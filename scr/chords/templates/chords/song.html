@@ -3,28 +3,21 @@
 {% block title %}Аккорды > {{ song.song_name }}{% endblock %}
 
 {% block body %}
-<div class="container pt-5 my-3 p-3 bg-white rounded shadow-sm">
-    <h4 class="border-bottom border-gray pb-2 mb-2">{{ song.song_name }}
+<div class="container pt-5 my-3 rounded shadow-sm container-theme">
+    <h4 class="border-bottom pb-2 mb-2 border-gray">{{ song.song_name }}
     {% if user.is_staff %}
         <a href="{% url 'song_update' song.id %}" class="btn btn-success btn-sm">Edit</a>
         <a href="{% url 'song_delete' song.id %}" class="btn btn-danger btn-sm">Del</a>
     {% endif %}
     </h4>
 
-    <div class="container">
-        <div class="row">
-            {% for chord in song.get_song_chords_set %}
-                {% with '/chords/img/'|add:song.instrument|add:'/'|add:chord|add:'.png' as image_static %}
-                    <img src="{% static image_static %}" alt="{{ chord }}">
-                {% endwith %}
-            {% endfor %}
-        </div>
-    </div>
-    <hr>
-    <div class="media text-muted">
-        <div class="alert alert-light text-monospace">
-            <pre>{{ song.song_text}}</pre>
-        </div>
+    <div>
+        {% for chord in song.get_song_chords_set %}
+            {% with '/chords/img/'|add:song.instrument|add:'/'|add:chord|add:'.png' as image_static %}
+                <img src="{% static image_static %}" alt="{{ chord }}" class="img-thumbnail">
+            {% endwith %}
+        {% endfor %}
+        <pre class="alert text-monospace alert-theme my-3">{{ song.song_text}}</pre>
     </div>
 </div>
 {% endblock %}

@@ -27,6 +27,6 @@ class SongForm(ModelForm):
                 'class': 'form-control, text-monospace',
                 'placeholder': 'Введите текст песни',
                 'rows': 10,
-                'cols': 80,
+                'style': "width:100%;"
             })
         }
