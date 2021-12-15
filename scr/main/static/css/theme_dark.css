@@ -27,3 +27,7 @@ h4, h6 {
 .carousel {
   margin: 0 auto;
 }
+
+.card-theme {
+    background: rgba(0, 18, 18, .8);
+}

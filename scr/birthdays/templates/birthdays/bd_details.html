@@ -3,9 +3,9 @@
 {% endblock %}
 
 {% block body %}
-<div class="container pt-5 my-3 p-3 bg-white rounded shadow-sm">
+<div class="container pt-5 my-3 p-3 rounded shadow-sm container-theme text-dark">
     <h4>Детали дня рождения
-    <a href="{% url 'birthday_delete' form.instance.id %}" class="btn btn-danger">Удалить</a></h4>
+        <a href="{% url 'birthday_delete' form.instance.id %}" class="btn btn-danger">Удалить</a></h4>
     <form method="post">
         {% csrf_token %}
         {{ form.name }}<br>

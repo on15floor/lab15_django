@@ -2,8 +2,8 @@
 {% load static %}
 {% block title %}Конвертор{% endblock %}
 {% block body %}
-<div class="container pt-5 my-3 p-3 bg-white rounded shadow-sm">
-    <h4 class="border-bottom border-gray pb-2 mb-0">Конвертор</h4>
+<div class="container pt-5 my-3 p-3 rounded shadow-sm container-theme">
+    <h4 class="border-bottom pb-2 mb-0 border-gray">Конвертор</h4>
     <h5>
         <span class="badge badge-secondary">USD <span class="badge" data-value="USD">--.--</span></span>
         <span class="badge badge-secondary">EUR <span class="badge" data-value="EUR">--.--</span></span>
@@ -11,7 +11,7 @@
     </h5>
 
     <div class="input-group mb-2">
-        <div class="input-group-prepend"><div class="input-group-text">🔜</div></div>
+        <div class="input-group-prepend"><div class="input-group-text bg-warning">🔜</div></div>
         <div class="col"><input id="input" type="number" class="form-control" autofocus/></div>
         <select disabled class="form-control">
             <option value="RUB" selected>RUB 🇷🇺</option>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="input-group mb-2">
-        <div class="input-group-prepend"><div class="input-group-text">🔙</div></div>
+        <div class="input-group-prepend"><div class="input-group-text bg-success">🔙</div></div>
         <div class="col"><input id="result" type="number" class="form-control"/></div>
         <select id="select" class="form-control">
             <option value="USD">USD 🇺🇸</option>

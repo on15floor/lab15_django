@@ -2,8 +2,8 @@
 {% block title %}Шпаргалки{% endblock %}
 
 {% block body %}
-<div class="container pt-5 my-3 p-3 bg-white rounded shadow-sm">
-    <h4 class="border-bottom border-gray pb-2 mb-0">Шпаргалки:
+<div class="container pt-5 my-3 p-3 rounded shadow-sm container-theme">
+    <h4 class="border-bottom pb-2 mb-2">Шпаргалки:
         <a href="{% url 'hints' 'git' %}" class="btn btn-primary btn-sm">GIT</a>
         <a href="{% url 'hints' 'markdown' %}" class="btn btn-secondary btn-sm">MarkDown</a>
         <a href="{% url 'hints' 'python' %}" class="btn btn-success btn-sm">Python</a>
@@ -11,6 +11,6 @@
         <a href="{% url 'hints' 'bash' %}" class="btn btn-warning btn-sm">BASH</a>
         <a href="{% url 'hints' 'vim' %}" class="btn btn-info btn-sm">VIM</a>
     </h4>
-    {{ md_to_html_content | safe}}
+    <div class="alert my-3 alert-theme">{{ md_to_html_content | safe}}</div>
 </div>
 {% endblock %}

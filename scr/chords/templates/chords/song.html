@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="container pt-5 my-3 rounded shadow-sm container-theme">
-    <h4 class="border-bottom pb-2 mb-2 border-gray">{{ song.song_name }}
+    <h4 class="border-bottom pb-2 mb-2">{{ song.song_name }}
     {% if user.is_staff %}
         <a href="{% url 'song_update' song.id %}" class="btn btn-success btn-sm">Edit</a>
         <a href="{% url 'song_delete' song.id %}" class="btn btn-danger btn-sm">Del</a>
