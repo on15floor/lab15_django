@@ -1,9 +1,6 @@
 body {
     background-color: #001212;
     background-image: url("/static/img/bg_dark.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
 }
 
 h4, h6 {
@@ -24,10 +21,11 @@ h4, h6 {
     color: #BDBDBD;
 }
 
-.carousel {
-  margin: 0 auto;
-}
-
 .card-theme {
     background: rgba(0, 18, 18, .8);
+}
+
+.theme {
+    background: #222222;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
