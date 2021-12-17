@@ -4,6 +4,7 @@ const rates = {};
 const elementUSD = document.querySelector('[data-value="USD"]');
 const elementEUR = document.querySelector('[data-value="EUR"]');
 const elementUAH = document.querySelector('[data-value="UAH"]');
+const elementKZT = document.querySelector('[data-value="KZT"]');
 // Элементы формы
 const input = document.querySelector('#input');
 const result = document.querySelector('#result');
@@ -21,11 +22,13 @@ async function getCurrencies () {
     rates.USD = result.Valute.USD;
     rates.EUR = result.Valute.EUR;
     rates.UAH = result.Valute.UAH;
+    rates.KZT = result.Valute.KZT;
 
     // Заполняем шаблон текущим курсом
     elementUSD.textContent = rates.USD.Value.toFixed(2);
     elementEUR.textContent = rates.EUR.Value.toFixed(2);
     elementUAH.textContent = rates.UAH.Value.toFixed(2);
+    elementKZT.textContent = rates.KZT.Value.toFixed(2);
 
     // Подкрашиваем курс, в зависимости от того вырос он или нет за сутки
     if (rates.USD.Value > rates.USD.Previous) {
@@ -43,11 +46,17 @@ async function getCurrencies () {
     } else {
         elementUAH.classList.add('badge-warning');
     }
+    if (rates.KZT.Value > rates.KZT.Previous) {
+        elementKZT.classList.add('badge-success');
+    } else {
+        elementKZT.classList.add('badge-warning');
+    }
 }
 
 // Функция конвертации курса валют
-function convertValue () {
-    result.value = (parseFloat(input.value) / rates[select.value].Value).toFixed(2);
+function convertValue() {
+    result.value = ((parseFloat(input.value) / rates[select.value].Value) *
+        rates[select.value].Nominal).toFixed(2);
 }
 
 getCurrencies();
