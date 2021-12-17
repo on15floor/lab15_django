@@ -19,3 +19,11 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(39,38,40,0.4);
 }
+
+@media only screen and (max-width: 767px ) {
+    .theme {
+        top: 4%;
+        z-index: 9999;
+        left: 15%;
+    }
+}
