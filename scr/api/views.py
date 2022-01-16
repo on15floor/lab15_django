@@ -1,9 +1,10 @@
 from django.http import JsonResponse
 from django.views import View
 
+from .services.delimiter import Delimiter
+from .services.get_apptime_sales import get_apptime_sales
 from .services.get_beget_news import get_beget_news
 from .services.get_birthdays import get_birthdays_today
-from .services.get_apptime_sales import get_apptime_sales
 from .services.mixins import BaseMixin
 from .services.telegram import TBot
 
@@ -45,3 +46,9 @@ class GetApptimeSales(BaseMixin, View):
                                     parse_mode='HTML')
         res = self.save_log_to_mongodb(message=f'Apptime fresh sales: {len(games)}')
         return JsonResponse(res)
+
+
+class DelimiterScore(BaseMixin, View):
+    """ Получение и сохранения рекордов игры Delimiter """
+    def get(self, request, *args, **kwargs):
+        return JsonResponse(Delimiter().get_best_scores(13))

@@ -74,6 +74,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+DELIMITER_DB = 'delimiter.sqlite3'
 MONGO_CONN_STRING = f"mongodb+srv://{os.getenv('MONGO_USER')}:{os.getenv('MONGO_PASS')}" \
                     f"@cluster0.f5t4t.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
