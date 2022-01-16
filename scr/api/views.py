@@ -7,6 +7,7 @@ from .services.get_beget_news import get_beget_news
 from .services.get_birthdays import get_birthdays_today
 from .services.mixins import BaseMixin
 from .services.telegram import TBot
+from django.conf import settings
 
 
 class GetBirthdays(BaseMixin, View):
@@ -51,4 +52,13 @@ class GetApptimeSales(BaseMixin, View):
 class DelimiterScore(BaseMixin, View):
     """ Получение и сохранения рекордов игры Delimiter """
     def get(self, request, *args, **kwargs):
+        self.check_token(request, token=settings.API_DELIMITER_TOKEN)
         return JsonResponse(Delimiter().get_best_scores(13))
+
+    def post(self, request, *args, **kwargs):
+        self.check_token(request, token=settings.API_DELIMITER_TOKEN)
+        in_data = {'user_id': request.POST.get('user_id', ''),
+                   'user_name': request.POST.get('user_name', ''),
+                   'best_score': int(request.POST.get('best_score', ''))}
+        Delimiter().save_records(in_data)
+        return JsonResponse({'Satus': 'ok'})

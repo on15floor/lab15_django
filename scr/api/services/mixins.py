@@ -13,11 +13,11 @@ class BaseMixin:
         self.uri = ''
         self.status = 'success'
 
-    def check_token(self, request):
+    def check_token(self, request, token=settings.API_QUERY_TOKEN):
         if 'token' in request.GET:
             self.token = request.GET['token']
             self.uri = request.path
-            if self.token == settings.API_QUERY_TOKEN:
+            if self.token == token:
                 return
         self.status = 'error'
         self.save_log_to_mongodb(message='Wrong token')

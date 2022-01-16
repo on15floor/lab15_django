@@ -6,7 +6,6 @@ class Delimiter:
     def __init__(self):
         db_dir = settings.BASE_DIR
         db_name = settings.DELIMITER_DB
-        print(db_dir, db_name)
         self.db = SQLite3Instance(db_dir, db_name)
 
     def get_best_scores(self, limit) -> dict:
@@ -18,3 +17,8 @@ class Delimiter:
         for i in range(0, len(query)):
             res[i+1] = query[i]
         return res
+
+    def save_records(self, in_data):
+        """ Метод добавления рекорда
+        """
+        self.db.insert('best_scores', in_data)
