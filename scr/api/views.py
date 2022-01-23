@@ -59,6 +59,6 @@ class DelimiterScore(BaseMixin, View):
         self.check_token(request, token=settings.API_DELIMITER_TOKEN)
         in_data = {'user_id': request.POST.get('user_id', ''),
                    'user_name': request.POST.get('user_name', ''),
-                   'best_score': int(request.POST.get('best_score', ''))}
+                   'best_score': int(request.POST.get('best_score', 0))}
         Delimiter().save_records(in_data)
         return JsonResponse({'Satus': 'ok'})
