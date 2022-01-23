@@ -21,4 +21,6 @@ class Delimiter:
     def save_records(self, in_data):
         """ Метод добавления рекорда
         """
+        user_id = in_data['user_id']
+        self.db.delete('best_scores', where=f'WHERE user_id="{user_id}"')
         self.db.insert('best_scores', in_data)
