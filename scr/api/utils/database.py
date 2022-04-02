@@ -1,6 +1,8 @@
 import os
 import sqlite3
 
+from typing import List
+
 
 class SQLite3Instance:
     """ Класс (обертка) для работы с SQLite3 БД """
@@ -18,7 +20,7 @@ class SQLite3Instance:
         self.cur.execute(sql_statement)
         return [dict(zip([desc[0] for desc in self.cur.description], row)) for row in self.cur.fetchall()]
 
-    def select(self, table: str, columns: list[str], where: str = '') -> list[dict]:
+    def select(self, table: str, columns: List[str], where: str = '') -> List[dict]:
         """ Метод выборки данных из БД
         :param table: таблица
         :param columns: какие колонки необходимо выбрать (необязательный параметр)
